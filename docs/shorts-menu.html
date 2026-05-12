@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼츠 메뉴판</title>
+<style>
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('fonts/SBAggroB.woff') format('woff');
+  font-weight: bold;
+}
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard Variable', sans-serif; background: #111; color: #eee; }
+
+.tab-nav { display: flex; border-bottom: 2px solid #333; padding: 0 24px; background: #1a1a1a; }
+.tab-nav a {
+  display: block; padding: 14px 20px; font-size: .9rem; color: #888;
+  text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -2px;
+}
+.tab-nav a.active { color: #f0b429; border-bottom-color: #f0b429; }
+.tab-nav a:hover:not(.active) { color: #ccc; }
+
+.container { padding: 32px 24px; max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.4rem; margin-bottom: 6px; }
+.sub { color: #777; font-size: .85rem; margin-bottom: 36px; }
+
+.section-title {
+  color: #f0b429; border-left: 4px solid #f0b429; padding-left: 12px;
+  font-size: 1rem; margin-bottom: 20px;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.template-card {
+  background: #1e1e1e; border-radius: 12px; overflow: hidden;
+  border: 2px solid #2a2a2a; cursor: pointer;
+  transition: transform .15s, border-color .15s;
+}
+.template-card:hover { transform: translateY(-4px); border-color: #f0b429; }
+.template-card.selected { border-color: #00C8FF; }
+
+.card-preview {
+  position: relative; width: 100%; aspect-ratio: 9/16; overflow: hidden;
+}
+.card-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.card-title {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 16px 14px 12px;
+  background: linear-gradient(to bottom, rgba(0,0,0,.75) 0%, transparent 100%);
+  font-family: 'SBAggroB', sans-serif;
+  font-size: 1.25rem; line-height: 1.3; color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
+}
+.card-title .accent { color: #00C8FF; }
+
+.card-sub {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 10px 14px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 100%);
+  font-size: .8rem; color: #fff; font-weight: 700;
+  text-shadow: 0 1px 4px #000, 0 0 8px #000;
+}
+
+.card-info { padding: 14px 16px; }
+.card-name { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tag {
+  font-size: .7rem; background: #2a2a2a; color: #999;
+  border-radius: 4px; padding: 2px 8px;
+}
+.card-desc { font-size: .75rem; color: #666; line-height: 1.5; }
+
+.wip {
+  opacity: .4; pointer-events: none;
+}
+.wip .card-name::after {
+  content: ' (준비중)'; color: #555; font-size: .75rem;
+}
+</style>
+</head>
+<body>
+
+<nav class="tab-nav">
+  <a href="index.html">🎨 GPT 이미지 메뉴</a>
+  <a href="shorts-menu.html" class="active">🎬 쇼츠 메뉴판</a>
+</nav>
+
+<div class="container">
+  <h1>쇼츠 메뉴판</h1>
+  <p class="sub">원하는 스타일 선택 후 메타에게 템플릿 이름으로 알려주세요</p>
+
+  <div class="section-title">🖼 쇼츠 템플릿</div>
+
+  <div class="template-grid">
+
+    <!-- 템플릿 1: webtoon_shorts_v1 -->
+    <div class="template-card">
+      <div class="card-preview">
+        <img src="shorts/cut_01.jpg" alt="webtoon_shorts_v1">
+        <div class="card-title">AI 어떻게<br><span class="accent">쓰시나요?</span></div>
+        <div class="card-sub">AI 어떻게 쓰시나요?</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">webtoon_shorts_v1</div>
+        <div class="card-tags">
+          <span class="tag">웹툰 풀컬러</span>
+          <span class="tag">어그로체</span>
+          <span class="tag">9:16</span>
+        </div>
+        <div class="card-desc">한국 웹툰 스타일 이미지 + 어그로체 상단 타이틀 + Pretendard 하단 자막</div>
+      </div>
+    </div>
+
+    <!-- 추후 추가될 템플릿들 (준비중) -->
+    <div class="template-card wip">
+      <div class="card-preview" style="background:#1a1a1a; display:flex; align-items:center; justify-content:center;">
+        <span style="color:#333; font-size:2rem;">+</span>
+      </div>
+      <div class="card-info">
+        <div class="card-name">실사_shorts_v1</div>
+        <div class="card-tags"><span class="tag">실사</span><span class="tag">미니멀</span></div>
+        <div class="card-desc">준비 중</div>
+      </div>
+    </div>
+
+    <div class="template-card wip">
+      <div class="card-preview" style="background:#1a1a1a; display:flex; align-items:center; justify-content:center;">
+        <span style="color:#333; font-size:2rem;">+</span>
+      </div>
+      <div class="card-info">
+        <div class="card-name">텍스트_shorts_v1</div>
+        <div class="card-tags"><span class="tag">타이포</span><span class="tag">모션</span></div>
+        <div class="card-desc">준비 중</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
